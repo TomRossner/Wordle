@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./script.js" type="module"></script>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Wordle</h1>
+        <p class="message">Have Fun!</p>
+        <div class="tiles-container"></div>
+        <div class="keyboard">
+                    <button class="kb-button">q</button>
+                    <button class="kb-button">w</button>
+                    <button class="kb-button">e</button>
+                    <button class="kb-button">r</button>
+                    <button class="kb-button">t</button>
+                    <button class="kb-button">y</button>
+                    <button class="kb-button">u</button>
+                    <button class="kb-button">i</button>
+                    <button class="kb-button">o</button>
+                    <button class="kb-button">p</button>
+                    <div class="space"></div>
+                    <button class="kb-button">a</button>
+                    <button class="kb-button">s</button>
+                    <button class="kb-button">d</button>
+                    <button class="kb-button">f</button>
+                    <button class="kb-button">g</button>
+                    <button class="kb-button">h</button>
+                    <button class="kb-button">j</button>
+                    <button class="kb-button">k</button>
+                    <button class="kb-button">l</button>
+                    <div class="space"></div>
+                    <button class="kb-button large">del</button>
+                    <button class="kb-button">z</button>
+                    <button class="kb-button">x</button>
+                    <button class="kb-button">c</button>
+                    <button class="kb-button">v</button>
+                    <button class="kb-button">b</button>
+                    <button class="kb-button">n</button>
+                    <button class="kb-button">m</button>
+                    <button class="kb-button large">enter</button>
+        </div>
+        <div class="info">
+            <div class="letter-info">
+                <div class="box green"></div>
+                <p>The letter is in the word AND in the correct spot.</p>
+            </div>
+            <div class="letter-info">
+                <div class="box yellow"></div>
+                <p>The letter is in the word BUT is not in the correct spot.</p>
+            </div>
+            <div class="letter-info">
+                <div class="box gray"></div>
+                <p>The letter is NOT in the word.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
