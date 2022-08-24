@@ -288,6 +288,24 @@ h1{
     }
 }
 
+@keyframes shakeLetters {
+    0%{
+        transform: translateX(0%);
+    }
+    25%{
+        transform: translateX(-20%);
+    }
+    50%{
+        transform: translateX(20%);
+    }
+    75%{
+        transform: translateX(-20%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
 @media only screen and (min-width: 250px) and (max-width: 500px) {
     .info{
         min-width: 90%;

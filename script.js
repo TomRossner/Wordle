@@ -34,6 +34,7 @@ keyboard.forEach((button) => {
         if(button.textContent === "enter" && currentTile === correctWord.length){
             let guessedWord = guessRows[currentRow].join("").toLowerCase();
             if(!WORDS.includes(guessedWord)){
+                shakeTiles();
                 displayMessage("invalid");
                 return;
             }
@@ -43,6 +44,7 @@ keyboard.forEach((button) => {
             return;
         }
         if(button.textContent === "enter" && currentTile < correctWord.length){
+            shakeTiles();
             displayMessage("short");
             return;
         }
@@ -60,6 +62,7 @@ document.addEventListener("keyup", function checkKey (event){
     if(event.key === "Enter" && currentTile === correctWord.length){
         let guessedWord = guessRows[currentRow].join("").toLowerCase();
         if(!WORDS.includes(guessedWord)){
+            shakeTiles();
             displayMessage("invalid");
             return;
         }
@@ -69,6 +72,7 @@ document.addEventListener("keyup", function checkKey (event){
         return;
     }
     if(event.key === "Enter" && currentTile < correctWord.length){
+        shakeTiles();
         displayMessage("short");
         return;
     }
@@ -97,7 +101,6 @@ guessRows.forEach((guessRow, guessRowIndex) => {
 function addLetter(key){
     if(currentTile < 5 && currentRow < maxGuesses){
         const tile = document.getElementById(`guessRow-${currentRow}-tile-${currentTile}`);
-        console.log(tile)
         tile.innerHTML = key;
         tile.setAttribute("data", key);
         tile.classList.add("filled");
@@ -256,5 +259,15 @@ function displayMessage(state){
             message.style.animation = "";
         })
         return;
+    }
+}
+
+function shakeTiles(){
+    const rowTiles = document.querySelector(`#guessRow-${currentRow}`).childNodes;
+    const tile = document.getElementById(`guessRow-${currentRow}-tile-${currentTile}`);
+    for(let i = 0; i < rowTiles.length; i++){
+        if(rowTiles[i].classList.contains("filled")){
+            rowTiles[i].style.animation = "shakeLetters 0.3s forwards";
+        }
     }
 }
