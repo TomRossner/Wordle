@@ -97,10 +97,14 @@ guessRows.forEach((guessRow, guessRowIndex) => {
 function addLetter(key){
     if(currentTile < 5 && currentRow < maxGuesses){
         const tile = document.getElementById(`guessRow-${currentRow}-tile-${currentTile}`);
+        console.log(tile)
         tile.innerHTML = key;
         tile.setAttribute("data", key);
         tile.classList.add("filled");
         tile.style.animation = "filledTile 0.1s forwards";
+        tile.addEventListener("animationend", () => {
+            tile.style.animation = null;
+        })
         guessRows[currentRow][currentTile] = key;
         currentTile++
     }
