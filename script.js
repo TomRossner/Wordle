@@ -3,7 +3,7 @@ const tilesContainer = document.querySelector(".tiles-container");
 const keyboard = document.querySelectorAll(".kb-button");
 let currentRow = 0;
 let currentGuess = 0;
-const correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+let correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
 console.log(correctWord);
 let isGameOver = false;
 const maxGuesses = 6;
@@ -16,6 +16,12 @@ const guessRows = [
     ["", "", "", "", ""]
 ];
 let currentTile = 0;
+const resetButton = document.querySelector(".reset");
+disableButton(resetButton);
+
+resetButton.addEventListener("click", () => {
+    reset();
+})
 
 keyboard.forEach((button) => {
     button.addEventListener("click", () => {
@@ -139,6 +145,9 @@ function checkRow(){
             delay += 0.1;
             isGameOver = true;
         }
+        setTimeout(() => {
+            isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
+        }, 2500);
         displayMessage("correct");
         return;   
     }
@@ -272,9 +281,39 @@ function shakeTiles(){
     }
 }
 
-// function reset(){
-//     currentTile = 0
-//     currentRow = 0
-//     currentGuess = 0
-//     correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
-// }
+function reset(){
+    currentTile = 0
+    currentRow = 0
+    currentGuess = 0
+    correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+    console.log(correctWord);
+    const filledTiles = document.querySelectorAll(".filled");
+    const keyboard = document.querySelectorAll(".kb-button");
+    const message = document.querySelector(".message");
+    message.style.opacity = 0;
+    for(let tile of filledTiles){
+        tile.classList.remove("filled", "green", "yellow", "gray");
+        tile.textContent = null;
+        tile.style.transitionDelay = null;
+        tile.style.animationDelay = null;
+        tile.style.animation = null;
+    }
+    for(let key of keyboard){
+        key.classList.remove("gray", "yellow", "green");
+    }
+    isGameOver = false;
+    setTimeout(() => {
+        disableButton(resetButton);
+    }, 200);
+}
+
+function disableButton(btn){
+    btn.style.opacity = 0;
+    btn.style.transition = "opacity 0.3s"
+    btn.style.pointerEvents = "none";
+}
+function enableButton(btn){
+    btn.style.opacity = 1;
+    btn.style.transition = "opacity 0.3s"
+    btn.style.pointerEvents = "all";
+}
