@@ -188,12 +188,12 @@ function checkLetters(word){
             }
             setTimeout(() => {
                 for(let i = 0; i < keyboard.length; i++){
-                    if(keyboard[i].textContent === guessedLetter && guessedLetter === correctLetter){
-                        setColors("green", keyboard[i]);
-                    }
-                    if(keyboard[i].textContent === guessedLetter && guessedLetter !== correctLetter){
-                        setColors("yellow", keyboard[i]);
-                    }
+                    // if(keyboard[i].textContent === guessedLetter && guessedLetter === correctLetter){
+                    //     setColors("green", keyboard[i]);
+                    // }
+                    // if(keyboard[i].textContent === guessedLetter && guessedLetter !== correctLetter){
+                    //     setColors("yellow", keyboard[i]);
+                    // }
                     if(keyboard[i].textContent === guessedLetter && !correctWord.includes(guessedLetter)){
                         setColors("gray", keyboard[i]);
                     }
