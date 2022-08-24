@@ -222,10 +222,10 @@ h1{
 }
 
 .reset{
-    margin: 0 auto;
-    padding: 0.5em 1em;
+    margin: 0.2rem auto;
+    padding: 0.5rem 1rem;
     font-family: "Ubuntu", sans-serif;
-    font-size: clamp(0.5rem, 2vmin, 1rem);
+    font-size: clamp(0.8rem, 1.5vmin, 1rem);
     font-weight: 700;
     color: rgb(240, 240, 240);
     text-transform: uppercase;
