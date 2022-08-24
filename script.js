@@ -85,7 +85,7 @@ guessRows.forEach((guessRow, guessRowIndex) => {
     const rowElement = document.createElement("div");
     rowElement.setAttribute("id", "guessRow-" + guessRowIndex);
     rowElement.classList.add("row");
-    guessRow.forEach((guess, guessIndex) => {
+    guessRow.forEach((guessIndex) => {
         const tileElement = document.createElement("div");
         tileElement.setAttribute("id", "guessRow-" + guessRowIndex + "-tile-" + guessIndex);
         tileElement.classList.add("tile");
