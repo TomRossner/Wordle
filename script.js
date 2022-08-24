@@ -97,7 +97,7 @@ guessRows.forEach((guessRow, guessRowIndex) => {
 function addLetter(key){
     if(currentTile < 5 && currentRow < maxGuesses){
         const tile = document.getElementById(`guessRow-${currentRow}-tile-${currentTile}`);
-        tile.textContent = key;
+        tile.innerText = key;
         tile.setAttribute("data", key);
         tile.classList.add("filled");
         tile.style.animation = "filledTile 0.1s forwards";
