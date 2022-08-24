@@ -97,7 +97,7 @@ guessRows.forEach((guessRow, guessRowIndex) => {
 function addLetter(key){
     if(currentTile < 5 && currentRow < maxGuesses){
         const tile = document.getElementById(`guessRow-${currentRow}-tile-${currentTile}`);
-        tile.innerText = key;
+        tile.innerHTML = key;
         tile.setAttribute("data", key);
         tile.classList.add("filled");
         tile.style.animation = "filledTile 0.1s forwards";
@@ -110,7 +110,7 @@ function deleteLetter(){
     if(currentTile > 0){
         currentTile--
         const tile = document.getElementById(`guessRow-${currentRow}-tile-${currentTile}`);
-        tile.textContent = "";
+        tile.innerHTML = "";
         tile.setAttribute("data", "");
         tile.classList.remove("filled");
         guessRows[currentRow][currentTile] = "";
