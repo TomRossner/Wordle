@@ -271,3 +271,10 @@ function shakeTiles(){
         }
     }
 }
+
+// function reset(){
+//     currentTile = 0
+//     currentRow = 0
+//     currentGuess = 0
+//     correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+// }
