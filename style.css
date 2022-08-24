@@ -14,8 +14,8 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 0.5em;
-    font-size: clamp(1.1rem, 2vmin, 1.5rem);
+    padding: 0.3em;
+    font-size: clamp(1rem, 2vmin, 1.5rem);
     position: relative;
 }
 
@@ -57,7 +57,7 @@ h1{
     grid-auto-rows: 3em;
     gap: 0.25em;
     justify-content: center;
-    padding: 1em;
+    padding: 0.5em;
     margin-top: 2rem;
     font-family: "Ubuntu";
 }
