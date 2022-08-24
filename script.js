@@ -54,6 +54,9 @@ document.addEventListener("keyup", function checkKey (event){
         deleteLetter();
         return;
     }
+    if(event.key === "Enter" && isGameOver === true){
+        return;
+    }
     if(event.key === "Enter" && currentTile === correctWord.length){
         let guessedWord = guessRows[currentRow].join("").toLowerCase();
         if(!WORDS.includes(guessedWord)){
@@ -66,9 +69,6 @@ document.addEventListener("keyup", function checkKey (event){
         return;
     }
     if(event.key === "Enter" && currentTile < correctWord.length){
-        if(event.key === "Enter" && isGameOver === true){
-            return;
-        }
         displayMessage("short");
         return;
     }
