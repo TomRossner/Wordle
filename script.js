@@ -212,6 +212,7 @@ function checkLetters(word){
     }
     setTimeout(() => {
             if(currentGuess === maxGuesses){
+                enableButton(resetButton);
                 displayMessage("game-over");
                 return;
             }
