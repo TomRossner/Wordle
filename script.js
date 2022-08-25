@@ -29,17 +29,15 @@ keyboard.forEach((button) => {
     button.addEventListener("click", () => {
         if(isGameOver === true){return;}
         if(button.innerText.length === 1){
+            const audio = new Audio("./audio/PopSound.mp3");
+            audio.play();
             let letter = button.textContent.toUpperCase();
             if(currentTile < correctWord.length){
-                const audio = new Audio("./audio/PopSound.mp3");
-                audio.play();
                 addLetter(letter);
                 return
             }
         }
         if(button.textContent === "del"){
-            // const popAudio = new Audio("./audio/PopDelete.mp3")
-            // popAudio.play();
             deleteLetter();
             return;
         }
@@ -195,12 +193,6 @@ function checkRow(){
         currentRow++
         currentTile = 0;
     }else return;
-    if(guessedWord === "pizza"){
-        setTimeout(() => {
-            const pizzaAudio = new Audio("./audio/Pizza.mp3");
-            pizzaAudio.play();
-        }, 2500);
-    }
    }
 }
 
@@ -261,10 +253,6 @@ function checkLetters(word){
                 enableButton(resetButton);
                 displayMessage("game-over");
                 return;
-            }
-            if(currentGuess === 5){
-                const helpAudio = new Audio("./audio/Help.mp3");
-                helpAudio.play();
             }
         }, 2000);
 }
