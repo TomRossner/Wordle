@@ -20,6 +20,8 @@ const resetButton = document.querySelector(".reset");
 disableButton(resetButton);
 
 resetButton.addEventListener("click", () => {
+    const audio = new Audio("./audio/PopSound.mp3");
+    audio.play();
     reset();
 })
 
@@ -29,11 +31,15 @@ keyboard.forEach((button) => {
         if(button.innerText.length === 1){
             let letter = button.textContent.toUpperCase();
             if(currentTile < correctWord.length){
+                const audio = new Audio("./audio/PopSound.mp3");
+                audio.play();
                 addLetter(letter);
                 return
             }
         }
         if(button.textContent === "del"){
+            // const popAudio = new Audio("./audio/PopDelete.mp3")
+            // popAudio.play();
             deleteLetter();
             return;
         }
@@ -50,10 +56,14 @@ keyboard.forEach((button) => {
             return;
         }
         if(button.textContent === "enter" && currentTile === 0){
+            const emptyAudio = new Audio("./audio/emptyAudio.mp3");
+            emptyAudio.play();
             displayMessage("empty");
             return;
         }
         if(button.textContent === "enter" && currentTile < correctWord.length){
+            const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+            shakeAudio.play();
             shakeTiles();
             displayMessage("short");
             return;
@@ -72,6 +82,8 @@ document.addEventListener("keyup", function checkKey (event){
     if(event.key === "Enter" && currentTile === correctWord.length){
         let guessedWord = guessRows[currentRow].join("").toLowerCase();
         if(!WORDS.includes(guessedWord)){
+            const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+            shakeAudio.play();
             shakeTiles();
             displayMessage("invalid");
             return;
@@ -82,10 +94,14 @@ document.addEventListener("keyup", function checkKey (event){
         return;
     }
     if(event.key === "Enter" && currentTile === 0){
+        const emptyAudio = new Audio("./audio/emptyAudio.mp3");
+        emptyAudio.play();
         displayMessage("empty");
         return;
     }
     if(event.key === "Enter" && currentTile < correctWord.length){
+        const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+        shakeAudio.play();
         shakeTiles();
         displayMessage("short");
         return;
@@ -94,6 +110,8 @@ document.addEventListener("keyup", function checkKey (event){
         if(isGameOver === true){return;}
         let pressedKey = event.key.toUpperCase();
         if(currentTile <= correctWord.length){
+            const audio = new Audio("./audio/PopSound.mp3");
+            audio.play();
             addLetter(pressedKey);
         }
     }
@@ -153,6 +171,8 @@ function checkRow(){
             delay += 0.1;
             isGameOver = true;
         }
+        const winAudio = new Audio("./audio/winAudio.mp3");
+        winAudio.play();
         setTimeout(() => {
             isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
         }, 2500);
@@ -220,6 +240,10 @@ function checkLetters(word){
     }
     setTimeout(() => {
             if(currentGuess === maxGuesses){
+                setTimeout(() => {
+                    const gameOverAudio = new Audio("./audio/GameOverSound.mp3");
+                    gameOverAudio.play();
+                }, 300);
                 enableButton(resetButton);
                 displayMessage("game-over");
                 return;
