@@ -49,6 +49,10 @@ keyboard.forEach((button) => {
             currentGuess += 1;
             return;
         }
+        if(button.textContent === "enter" && currentTile === 0){
+            displayMessage("empty");
+            return;
+        }
         if(button.textContent === "enter" && currentTile < correctWord.length){
             shakeTiles();
             displayMessage("short");
@@ -75,6 +79,10 @@ document.addEventListener("keyup", function checkKey (event){
         checkRow();
         currentTile = 0;
         currentGuess ++; 
+        return;
+    }
+    if(event.key === "Enter" && currentTile === 0){
+        displayMessage("empty");
         return;
     }
     if(event.key === "Enter" && currentTile < correctWord.length){
@@ -236,7 +244,7 @@ function displayMessage(state){
         message.style.color = "rgb(255, 89, 94)";
         message.style.animation = `messageDisplay 3s forwards`;
         message.addEventListener("animationend", () =>{
-            message.style.animation = "";
+            message.style.animation = null;
         })
         return;
     }
@@ -266,7 +274,18 @@ function displayMessage(state){
         message.style.color = "rgb(255, 89, 94)";
         message.style.animation = `messageDisplay 3s forwards`;
         message.addEventListener("animationend", () =>{
-            message.style.animation = "";
+            message.style.animation = null;
+        })
+        return;
+    }
+
+    if(state === "empty"){
+        const message = document.querySelector(".message");
+        message.textContent = `You must enter a word!`;
+        message.style.color = "rgb(255, 89, 94)";
+        message.style.animation = `messageDisplay 3s forwards`;
+        message.addEventListener("animationend", () =>{
+            message.style.animation = null;
         })
         return;
     }
