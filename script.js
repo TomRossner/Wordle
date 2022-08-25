@@ -179,7 +179,7 @@ function checkRow(){
             delay += 0.1;
             isGameOver = true;
         }
-        const winAudio = new Audio("./audio/win5.mp3");
+        const winAudio = new Audio("./audio/winAudio.mp3");
         winAudio.play();
         setTimeout(() => {
             isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
