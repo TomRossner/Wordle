@@ -46,6 +46,8 @@ keyboard.forEach((button) => {
         if(button.textContent === "enter" && currentTile === correctWord.length){
             let guessedWord = guessRows[currentRow].join("").toLowerCase();
             if(!WORDS.includes(guessedWord)){
+                const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+                shakeAudio.play();
                 shakeTiles();
                 displayMessage("invalid");
                 return;
@@ -82,8 +84,8 @@ document.addEventListener("keyup", function checkKey (event){
     if(event.key === "Enter" && currentTile === correctWord.length){
         let guessedWord = guessRows[currentRow].join("").toLowerCase();
         if(!WORDS.includes(guessedWord)){
-            // const dontKnowAudio = new Audio("./audio/DontKnowAudio.mp3");
-            // dontKnowAudio.play();
+            const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+            shakeAudio.play();
             shakeTiles();
             displayMessage("invalid");
             return;
