@@ -82,8 +82,8 @@ document.addEventListener("keyup", function checkKey (event){
     if(event.key === "Enter" && currentTile === correctWord.length){
         let guessedWord = guessRows[currentRow].join("").toLowerCase();
         if(!WORDS.includes(guessedWord)){
-            const shakeAudio = new Audio("./audio/invalidAudio.mp3");
-            shakeAudio.play();
+            // const dontKnowAudio = new Audio("./audio/DontKnowAudio.mp3");
+            // dontKnowAudio.play();
             shakeTiles();
             displayMessage("invalid");
             return;
@@ -162,6 +162,12 @@ function checkRow(){
     const rowTiles = document.querySelector(`#guessRow-${currentRow}`).childNodes;
     console.log(guessedWord);
     if(guessedWord === correctWord){
+        if(currentRow === 0 || currentRow === 1){
+            setTimeout(() => {
+                const cheaterAudio = new Audio("./audio/Cheater.mp3");
+                cheaterAudio.play();
+            }, 2000);
+        }
         let delay = 0;
         for(let i = 0; i < rowTiles.length; i++){
             rowTiles[i].style.animation = "win 1.3s forwards";
@@ -171,7 +177,7 @@ function checkRow(){
             delay += 0.1;
             isGameOver = true;
         }
-        const winAudio = new Audio("./audio/winAudio.mp3");
+        const winAudio = new Audio("./audio/win5.mp3");
         winAudio.play();
         setTimeout(() => {
             isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
@@ -187,6 +193,12 @@ function checkRow(){
         currentRow++
         currentTile = 0;
     }else return;
+    if(guessedWord === "pizza"){
+        setTimeout(() => {
+            const pizzaAudio = new Audio("./audio/Pizza.mp3");
+            pizzaAudio.play();
+        }, 2500);
+    }
    }
 }
 
@@ -247,6 +259,10 @@ function checkLetters(word){
                 enableButton(resetButton);
                 displayMessage("game-over");
                 return;
+            }
+            if(currentGuess === 5){
+                const helpAudio = new Audio("./audio/Help.mp3");
+                helpAudio.play();
             }
         }, 2000);
 }
