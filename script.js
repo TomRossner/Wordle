@@ -254,7 +254,7 @@ function checkLetters(word){
                 displayMessage("game-over");
                 return;
             }
-        }, 2000);
+        }, 1600);
 }
 
 function displayMessage(state){
