@@ -174,6 +174,10 @@ function checkRow(){
             isGameOver = true;
         }
         setTimeout(() => {
+            const title = document.querySelector(".title");
+            title.style.animation = "titleSlide 0.3s forwards";
+        }, 1500);
+        setTimeout(() => {
             isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
         }, 2500);
         displayMessage("correct");
@@ -335,6 +339,7 @@ function reset(){
     const keyboard = document.querySelectorAll(".kb-button");
     const message = document.querySelector(".message");
     message.style.opacity = 0;
+    const title = document.querySelector(".title");
     for(let tile of filledTiles){
         tile.classList.remove("filled", "green", "yellow", "gray");
         tile.textContent = null;
@@ -348,12 +353,15 @@ function reset(){
     isGameOver = false;
     setTimeout(() => {
         disableButton(resetButton);
+        setTimeout(() => {
+            title.style.animation = "titleSlideReverse 0.3s forwards";
+        }, 200);
     }, 200);
 }
 
 function disableButton(btn){
     btn.style.opacity = 0;
-    btn.style.transition = "opacity 0.3s"
+    btn.style.transition = "opacity 0.1s"
     btn.style.pointerEvents = "none";
 }
 function enableButton(btn){

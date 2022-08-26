@@ -18,15 +18,22 @@ body{
     font-size: clamp(1rem, 2vmin, 1.5rem);
     position: relative;
 }
-
-h1{
+.title-play-again{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+}
+.title{
     font-family: "Ubuntu", sans-serif;
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
     color: rgb(240, 240, 240);
-    padding: 0.3rem 0;
-    margin-bottom: 1rem;
+    padding: 0 1rem;
+    position: relative;
+
 }
 
 .message{
@@ -222,7 +229,6 @@ h1{
 }
 
 .reset{
-    margin: 0.2rem auto;
     padding: 0.5rem 1rem;
     font-family: "Ubuntu", sans-serif;
     font-size: clamp(0.8rem, 1.5vmin, 1rem);
@@ -233,19 +239,20 @@ h1{
     cursor: pointer;
     border: none;
     background-color: rgb(23, 143, 212);
-    transform: scale(1);
+    transform: scale(1) translateX(70%);
     transition: transform 0.05s;
+    position: absolute;
 }
 
 .reset:hover{
     background-color: rgb(23, 143, 212);
-    transform: scale(1.1);
+    transform: scale(1.1) translateX(70%);
     box-shadow: 0 0 15px 2px rgb(0, 0, 0, 0.5);
 }
 
 .reset:active{
     background-color: rgb(23, 143, 212);
-    transform: scale(1.1);
+    transform: scale(1.1) translateX(70%);
     box-shadow: 0 0 15px 2px rgb(0, 0, 0, 0.5);
 }
 
@@ -328,6 +335,24 @@ h1{
     }
     75%{
         transform: translateX(-20%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes titleSlide {
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-39%);
+    }
+}
+
+@keyframes titleSlideReverse {
+    0%{
+        transform: translateX(-39%);
     }
     100%{
         transform: translateX(0%);
