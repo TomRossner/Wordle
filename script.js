@@ -243,15 +243,15 @@ function checkLetters(word){
         }, 500);
     }
     setTimeout(() => {
-        const title = document.querySelector(".title");
-        title.style.animation = "titleSlide 0.3s forwards";
-    }, 1700);
-    setTimeout(() => {
             if(currentGuess === maxGuesses){
                 setTimeout(() => {
                     const gameOverAudio = new Audio("./audio/GameOverSound.mp3");
                     gameOverAudio.play();
                 }, 300);
+                setTimeout(() => {
+                    const title = document.querySelector(".title");
+                    title.style.animation = "titleSlide 0.3s forwards";
+                }, 0);
                 enableButton(resetButton);
                 displayMessage("game-over");
                 return;
