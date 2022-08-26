@@ -162,6 +162,8 @@ function checkRow(){
     const rowTiles = document.querySelector(`#guessRow-${currentRow}`).childNodes;
     console.log(guessedWord);
     if(guessedWord === correctWord){
+        const winAudio = new Audio("./audio/winAudio.mp3");
+        winAudio.play();
         if(currentRow === 0 || currentRow === 1){
             setTimeout(() => {
                 const cheaterAudio = new Audio("./audio/Cheater.mp3");
@@ -177,8 +179,6 @@ function checkRow(){
             delay += 0.1;
             isGameOver = true;
         }
-        const winAudio = new Audio("./audio/winAudio.mp3");
-        winAudio.play();
         setTimeout(() => {
             isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
         }, 2500);
