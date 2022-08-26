@@ -170,7 +170,7 @@ body{
     var(--hue, 0),
     var(--saturation, 0%),    
     var(--lightness, 8%));
-    color: rgb(60, 60, 60);
+    color: rgb(80, 80, 80);
     transition: background-color 0.2s, color 0.2s;
 }
 .gray{
@@ -178,7 +178,7 @@ body{
     var(--hue, 0),
     var(--saturation, 0%),    
     var(--lightness, 8%));
-    color: rgb(70, 70, 70);
+    color: rgb(80, 80, 80);
     transition: background-color 0.2s, color 0.2s;
 }
 
