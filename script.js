@@ -176,7 +176,7 @@ function checkRow(){
         setTimeout(() => {
             const title = document.querySelector(".title");
             title.style.animation = "titleSlide 0.3s forwards";
-        }, 1500);
+        }, 2400);
         setTimeout(() => {
             isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
         }, 2500);
@@ -251,7 +251,9 @@ function checkLetters(word){
                 const title = document.querySelector(".title");
                 title.style.animation = "titleSlide 0.3s forwards";
                 enableButton(resetButton);
-                displayMessage("game-over");
+                setTimeout(() => {
+                    displayMessage("game-over");
+                }, 500);
                 return;
             }
         }, 1600);
@@ -260,7 +262,7 @@ function checkLetters(word){
 function displayMessage(state){
     if(state === "game-over"){
         const message = document.querySelector(".message");
-        message.textContent = `GAME OVER! The correct word was ${correctWord.toUpperCase()}`;
+        message.textContent = `GAME OVER! The word was ${correctWord.toUpperCase()}`;
         message.style.color = "rgb(255, 89, 94)";
         setTimeout(() => {
             message.style.opacity = "1";
