@@ -248,10 +248,8 @@ function checkLetters(word){
                     const gameOverAudio = new Audio("./audio/GameOverSound.mp3");
                     gameOverAudio.play();
                 }, 300);
-                setTimeout(() => {
-                    const title = document.querySelector(".title");
-                    title.style.animation = "titleSlide 0.3s forwards";
-                }, 0);
+                const title = document.querySelector(".title");
+                title.style.animation = "titleSlide 0.3s forwards";
                 enableButton(resetButton);
                 displayMessage("game-over");
                 return;
