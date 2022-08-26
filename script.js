@@ -164,12 +164,6 @@ function checkRow(){
     if(guessedWord === correctWord){
         const winAudio = new Audio("./audio/winAudio.mp3");
         winAudio.play();
-        if(currentRow === 0 || currentRow === 1){
-            setTimeout(() => {
-                const cheaterAudio = new Audio("./audio/Cheater.mp3");
-                cheaterAudio.play();
-            }, 2000);
-        }
         let delay = 0;
         for(let i = 0; i < rowTiles.length; i++){
             rowTiles[i].style.animation = "win 1.3s forwards";
