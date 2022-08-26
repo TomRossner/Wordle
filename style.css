@@ -6,8 +6,8 @@
 }
 
 body{
-    /* overflow: hidden; */
     background-color: rgb(35, 35, 35);
+    user-select: none;
 }
 
 .game-container{
