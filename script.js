@@ -71,7 +71,7 @@ keyboard.forEach((button) => {
     })
 })
 
-document.addEventListener("keydown", function checkKey (event){
+window.addEventListener("keydown", function checkKey (event){
     if(event.key === "Backspace"){
         deleteLetter();
         return;
