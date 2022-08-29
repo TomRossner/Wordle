@@ -178,7 +178,10 @@ function checkRow(){
             title.style.animation = "titleSlide 0.3s forwards";
         }, 2400);
         setTimeout(() => {
-            isGameOver === true ? enableButton(resetButton) : disableButton(resetButton);
+            if(isGameOver === true){
+                enableButton(resetButton);
+                resetButton.style.animation = "scaleButton 1s infinite";
+            }else disableButton(resetButton);
         }, 2500);
         displayMessage("correct");
         return;   
@@ -251,6 +254,7 @@ function checkLetters(word){
                 const title = document.querySelector(".title");
                 title.style.animation = "titleSlide 0.3s forwards";
                 enableButton(resetButton);
+                resetButton.style.animation = "scaleButton 1s infinite";
                 setTimeout(() => {
                     displayMessage("game-over");
                 }, 500);
@@ -262,7 +266,8 @@ function checkLetters(word){
 function displayMessage(state){
     if(state === "game-over"){
         const message = document.querySelector(".message");
-        message.textContent = `GAME OVER! The word was ${correctWord.toUpperCase()}`;
+        message.innerHTML = `<p>GAME OVER!<br>The word was ${correctWord.toUpperCase()}</p>`;
+        message.style.fontWeight = "bolder";
         message.style.color = "rgb(255, 89, 94)";
         setTimeout(() => {
             message.style.opacity = "1";
@@ -283,7 +288,7 @@ function displayMessage(state){
 
     if(state === "correct"){
         const message = document.querySelector(".message");
-        message.textContent = `Bravo! You found the word!`;
+        message.textContent = `Awesome! You found the word!`;
         message.style.color = "rgb(138, 201, 38)";
         setTimeout(() => {
             message.style.opacity = "1";

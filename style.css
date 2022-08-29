@@ -22,7 +22,7 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 0 auto;
+    margin: 0.5rem auto 0 auto;
     position: relative;
     padding: 0.2rem;
 }
@@ -357,6 +357,12 @@ body{
     100%{
         transform: translateX(0%);
     }
+}
+
+@keyframes scaleButton {
+    0%{transform: scale(1) translateX(60%);}
+    50%{transform: scale(1.1) translateX(55.5%);}
+    100%{transform: scale(1) translateX(60%);}
 }
 
 @media only screen and (min-width: 250px) and (max-width: 500px) {
