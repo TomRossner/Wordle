@@ -32,7 +32,7 @@ body{
     font-weight: 700;
     text-align: center;
     /* color: rgb(240, 240, 240); */
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgb(230, 230, 230) 44%, rgb(105, 143, 146)100%);
+    background: linear-gradient(170deg, rgba(255,255,255,1) 0%, rgb(230, 230, 230) 44%, rgb(105, 143, 146)100%);
     background-position: top left;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -216,7 +216,8 @@ body{
 
 .info h3{
     text-align: left;
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 44%, rgba(125,156,159,1) 100%);
+    background: linear-gradient(175deg, rgba(255,255,255,1) 0%, rgb(219, 219, 219) 25%, rgb(93, 130, 133)100%);
+    background-position: top left;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 1.3rem;
