@@ -351,10 +351,10 @@ function reset(){
     const title = document.querySelector(".title");
     for(let tile of filledTiles){
         tile.classList.remove("filled", "green", "yellow", "gray");
-        tile.textContent = null;
-        tile.style.transitionDelay = null;
-        tile.style.animationDelay = null;
-        tile.style.animation = null;
+        tile.textContent = "";
+        tile.style.transitionDelay = "";
+        tile.style.animationDelay = "";
+        tile.style.animation = "";
     }
     for(let key of keyboard){
         key.classList.remove("gray", "yellow", "green");
