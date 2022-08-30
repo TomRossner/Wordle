@@ -31,7 +31,10 @@ body{
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
-    color: rgb(240, 240, 240);
+    /* color: rgb(240, 240, 240); */
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 44%, rgba(125,156,159,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     position: relative;
     padding: 0 0.5rem 0 0
 }
@@ -210,8 +213,25 @@ body{
     gap: 0.5rem;
 }
 
+.info h3{
+    text-align: left;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 44%, rgba(125,156,159,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.3rem;
+}
+
+.info hr{
+    width: 100%;
+    background-color: rgba(125,156,159,1);
+    border: 2px solid rgba(125,156,159,1);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+}
+
 .letter-info{
     display: flex;
+    padding: 0 0.5rem 0 0.5rem;
 }
 
 .letter-info p {
@@ -254,6 +274,17 @@ body{
     background-color: rgb(23, 143, 212);
     transform: scale(1.1) translateX(55%);
     box-shadow: 0 0 15px 2px rgb(0, 0, 0, 0.5);
+}
+
+footer p{
+    font-family: "Ubuntu", sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 1rem auto;
+    color: rgb(240, 240, 240);
+
 }
 
 @keyframes win {
@@ -368,5 +399,9 @@ body{
 @media only screen and (min-width: 250px) and (max-width: 500px) {
     .info{
         min-width: 90%;
+    }
+
+    .info h3{
+        text-align: center;
     }
 }
