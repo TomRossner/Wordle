@@ -392,6 +392,7 @@ function reset(){
     currentGuess = 0;
     correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
     console.log(correctWord);
+    previousWords = [];
     const filledTiles = document.querySelectorAll(".filled");
     const keyboard = document.querySelectorAll(".kb-button");
     const message = document.querySelector(".message");
