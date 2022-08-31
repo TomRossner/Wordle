@@ -34,7 +34,7 @@ keyboard.forEach((button) => {
             let letter = button.textContent.toUpperCase();
             if(currentTile < correctWord.length){
                 addLetter(letter);
-                return
+                return;
             }
         }
         if(button.textContent === "del"){
@@ -119,11 +119,11 @@ window.addEventListener("keydown", function checkKey (event){
 
 guessRows.forEach((guessRow, guessRowIndex) => {
     const rowElement = document.createElement("div");
-    rowElement.setAttribute("id", "guessRow-" + guessRowIndex);
+    rowElement.setAttribute("id", `guessRow-${guessRowIndex}`);
     rowElement.classList.add("row");
     guessRow.forEach((guess, guessIndex) => {
         const tileElement = document.createElement("div");
-        tileElement.setAttribute("id", "guessRow-" + guessRowIndex + "-tile-" + guessIndex);
+        tileElement.setAttribute("id", `guessRow-${guessRowIndex}-tile-${guessIndex}`);
         tileElement.classList.add("tile");
         rowElement.append(tileElement);
     })
@@ -138,16 +138,16 @@ function addLetter(key){
         tile.classList.add("filled");
         tile.style.animation = "filledTile 0.1s forwards";
         tile.addEventListener("animationend", () => {
-            tile.style.animation = null;
+            tile.style.animation = "";
         })
         guessRows[currentRow][currentTile] = key;
-        currentTile++
+        currentTile++;
     }
 }
 
 function deleteLetter(){
     if(currentTile > 0){
-        currentTile--
+        currentTile--;
         const tile = document.getElementById(`guessRow-${currentRow}-tile-${currentTile}`);
         tile.innerHTML = "";
         tile.setAttribute("data", "");
@@ -191,7 +191,7 @@ function checkRow(){
     }
     
     if(currentRow < maxGuesses && isGameOver === false){
-        currentRow++
+        currentRow++;
         currentTile = 0;
     }else return;
    }
@@ -281,7 +281,7 @@ function displayMessage(state){
         message.style.color = "rgb(255, 89, 94)";
         message.style.animation = `messageDisplay 3s forwards`;
         message.addEventListener("animationend", () =>{
-            message.style.animation = null;
+            message.style.animation = "";
         })
         return;
     }
@@ -311,7 +311,7 @@ function displayMessage(state){
         message.style.color = "rgb(255, 89, 94)";
         message.style.animation = `messageDisplay 3s forwards`;
         message.addEventListener("animationend", () =>{
-            message.style.animation = null;
+            message.style.animation = "";
         })
         return;
     }
@@ -322,7 +322,7 @@ function displayMessage(state){
         message.style.color = "rgb(255, 89, 94)";
         message.style.animation = `messageDisplay 3s forwards`;
         message.addEventListener("animationend", () =>{
-            message.style.animation = null;
+            message.style.animation = "";
         })
         return;
     }
@@ -339,9 +339,9 @@ function shakeTiles(){
 }
 
 function reset(){
-    currentTile = 0
-    currentRow = 0
-    currentGuess = 0
+    currentTile = 0;
+    currentRow = 0;
+    currentGuess = 0;
     correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
     console.log(correctWord);
     const filledTiles = document.querySelectorAll(".filled");
