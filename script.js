@@ -1,6 +1,7 @@
 import { WORDS } from "./words.js";
 const tilesContainer = document.querySelector(".tiles-container");
 const keyboard = document.querySelectorAll(".kb-button");
+const message = document.querySelector(".message");
 let currentRow = 0;
 let currentGuess = 0;
 let correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
@@ -16,8 +17,9 @@ const guessRows = [
     ["", "", "", "", ""]
 ];
 let currentTile = 0;
+displayMessage("start");
 const resetButton = document.querySelector(".reset");
-disableButton(resetButton);
+disableElement(resetButton);
 
 guessRows.forEach((guessRow, guessRowIndex) => {
     const rowElement = document.createElement("div");
@@ -73,7 +75,8 @@ function checkButton(){ // On-screen keyboard
             displayMessage("invalid");
             return;
         }
-        checkRow()
+        checkRow();
+        disableElement(message);
         currentTile = 0;
         currentGuess += 1;
         return;
@@ -91,6 +94,7 @@ function checkButton(){ // On-screen keyboard
         displayMessage("short");
         return;
     }
+    window.focus();
 }
 
 function checkKey(event){ // Keyboard
@@ -111,6 +115,7 @@ function checkKey(event){ // Keyboard
             return;
         }
         checkRow();
+        disableElement(message);
         currentTile = 0;
         currentGuess ++; 
         return;
@@ -137,6 +142,7 @@ function checkKey(event){ // Keyboard
             addLetter(pressedKey);
         }
     }
+    window.focus();
 }
 
 function addLetter(key){
@@ -188,9 +194,9 @@ function checkRow(){
         }, 2400);
         setTimeout(() => {
             if(isGameOver === true){
-                enableButton(resetButton);
+                enableElement(resetButton);
                 resetButton.style.animation = "scaleButton 1s infinite";
-            }else disableButton(resetButton);
+            }else disableElement(resetButton);
         }, 2500);
         displayMessage("correct");
         return;   
@@ -249,7 +255,7 @@ function checkLetters(word){
                 }, 300);
                 const title = document.querySelector(".title");
                 title.style.animation = "titleSlide 0.3s forwards";
-                enableButton(resetButton);
+                enableElement(resetButton);
                 resetButton.style.animation = "scaleButton 1s infinite";
                 setTimeout(() => {
                     displayMessage("game-over");
@@ -273,6 +279,16 @@ function setColors(color, tile){
 }
 
 function displayMessage(state){
+    if(state === "start"){
+        const message = document.querySelector(".message");
+        message.textContent = `Start by entering a 5-letter word`;
+        message.style.color = "rgb(105, 143, 146)";
+        setTimeout(() => {
+            message.style.opacity = "1";
+        }, 500);
+        return;
+    }
+
     if(state === "game-over"){
         const message = document.querySelector(".message");
         message.innerHTML = `<p>GAME OVER!<br>The word was ${correctWord.toUpperCase()}</p>`;
@@ -304,6 +320,7 @@ function displayMessage(state){
         }, 500);
         return;
     }
+
     if(state === "correct" && isGameOver === true){
         const message = document.querySelector(".message");
         message.textContent = `Bravo! You found the word!`;
@@ -356,7 +373,7 @@ function reset(){
     const filledTiles = document.querySelectorAll(".filled");
     const keyboard = document.querySelectorAll(".kb-button");
     const message = document.querySelector(".message");
-    message.style.opacity = 0;
+    displayMessage("start");
     const title = document.querySelector(".title");
     for(let tile of filledTiles){
         tile.classList.remove("filled", "green", "yellow", "gray");
@@ -370,21 +387,23 @@ function reset(){
     }
     isGameOver = false;
     setTimeout(() => {
-        disableButton(resetButton);
+        disableElement(resetButton);
         setTimeout(() => {
             title.style.animation = "titleSlideReverse 0.3s forwards";
         }, 200);
-    }, 200);
+    }, 100);
+    resetButton.blur();
 }
 
-function disableButton(btn){
-    btn.style.opacity = 0;
-    btn.style.transition = "opacity 0.1s"
-    btn.style.pointerEvents = "none";
+function disableElement(element){
+    element.style.pointerEvents = "none";
+    element.style.opacity = 0;
+    element.style.transition = "opacity 0.1s";
+    element.blur();
 }
 
-function enableButton(btn){
-    btn.style.opacity = 1;
-    btn.style.transition = "opacity 0.3s"
-    btn.style.pointerEvents = "all";
+function enableElement(element){
+    element.style.pointerEvents = "all";
+    element.style.opacity = 1;
+    element.style.transition = "opacity 0.3s";
 }

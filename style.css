@@ -37,7 +37,7 @@ body{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
-    padding: 0 0.5rem 0 0
+    padding: 0 0.5rem 0 0;
 }
 
 .message{
@@ -54,7 +54,7 @@ body{
     font-size: 1.2rem;
     position: relative;
     z-index: 1;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.3s;
 }
 
@@ -405,5 +405,16 @@ footer p{
 
     .info h3{
         text-align: center;
+    }
+
+    .kb-button:hover{
+        background-color: hsl(
+        var(--hue, 200)
+        var(--saturation, 1%)
+        var(--lightness, 51%));
+    }
+
+    .kb-button:active{
+        background-color: rgb(50, 50, 50);
     }
 }
