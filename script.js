@@ -19,11 +19,21 @@ let currentTile = 0;
 const resetButton = document.querySelector(".reset");
 disableButton(resetButton);
 
-resetButton.addEventListener("click", () => {
-    const audio = new Audio("./audio/PopSound.mp3");
-    audio.play();
-    reset();
+guessRows.forEach((guessRow, guessRowIndex) => {
+    const rowElement = document.createElement("div");
+    rowElement.setAttribute("id", `guessRow-${guessRowIndex}`);
+    rowElement.classList.add("row");
+    guessRow.forEach((guess, guessIndex) => {
+        const tileElement = document.createElement("div");
+        tileElement.setAttribute("id", `guessRow-${guessRowIndex}-tile-${guessIndex}`);
+        tileElement.classList.add("tile");
+        rowElement.append(tileElement);
+    })
+    tilesContainer.append(rowElement);
 })
+
+
+// Event Listeners
 
 keyboard.forEach((button) => {
     button.addEventListener("click", () => {
@@ -117,18 +127,15 @@ window.addEventListener("keydown", function checkKey (event){
     }
 })
 
-guessRows.forEach((guessRow, guessRowIndex) => {
-    const rowElement = document.createElement("div");
-    rowElement.setAttribute("id", `guessRow-${guessRowIndex}`);
-    rowElement.classList.add("row");
-    guessRow.forEach((guess, guessIndex) => {
-        const tileElement = document.createElement("div");
-        tileElement.setAttribute("id", `guessRow-${guessRowIndex}-tile-${guessIndex}`);
-        tileElement.classList.add("tile");
-        rowElement.append(tileElement);
-    })
-    tilesContainer.append(rowElement);
+resetButton.addEventListener("click", () => {
+    const audio = new Audio("./audio/PopSound.mp3");
+    audio.play();
+    reset();
 })
+
+
+
+// Functions
 
 function addLetter(key){
     if(currentTile < 5 && currentRow < maxGuesses){
@@ -197,19 +204,6 @@ function checkRow(){
    }
 }
 
-function setColors(color, tile){
-    if(color === "green"){
-        tile.classList.add("green");
-        
-    }
-    if(color === "yellow"){
-        tile.classList.add("yellow");
-    }
-    if(color === "gray"){
-        tile.classList.add("gray");
-    }
-}
-
 function checkLetters(word){
     const rowTiles = document.querySelector(`#guessRow-${currentRow}`).childNodes;
     let delay = 0;
@@ -261,6 +255,19 @@ function checkLetters(word){
                 return;
             }
         }, 1600);
+}
+
+function setColors(color, tile){
+    if(color === "green"){
+        tile.classList.add("green");
+        
+    }
+    if(color === "yellow"){
+        tile.classList.add("yellow");
+    }
+    if(color === "gray"){
+        tile.classList.add("gray");
+    }
 }
 
 function displayMessage(state){
@@ -373,6 +380,7 @@ function disableButton(btn){
     btn.style.transition = "opacity 0.1s"
     btn.style.pointerEvents = "none";
 }
+
 function enableButton(btn){
     btn.style.opacity = 1;
     btn.style.transition = "opacity 0.3s"
