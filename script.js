@@ -48,7 +48,6 @@ resetButton.addEventListener("click", () => {
 })
 
 
-
 // Functions
 
 function checkButton(){ // On-screen keyboard
@@ -371,7 +370,11 @@ function reset(){
     const filledTiles = document.querySelectorAll(".filled");
     const keyboard = document.querySelectorAll(".kb-button");
     const message = document.querySelector(".message");
-    displayMessage("start");
+    disableElement(message);
+    setTimeout(() => {
+        displayMessage("start");
+        enableElement(message);
+    }, 1000);
     const title = document.querySelector(".title");
     for(let tile of filledTiles){
         tile.classList.remove("filled", "green", "yellow", "gray");
@@ -396,7 +399,7 @@ function reset(){
 function disableElement(element){
     element.style.pointerEvents = "none";
     element.style.opacity = 0;
-    element.style.transition = "opacity 0.1s";
+    element.style.transition = "opacity 0.2s";
     element.blur();
 }
 
