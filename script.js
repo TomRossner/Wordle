@@ -20,6 +20,7 @@ let currentTile = 0;
 displayMessage("start");
 const resetButton = document.querySelector(".reset");
 disableElement(resetButton);
+let previousWords = [];
 
 guessRows.forEach((guessRow, guessRowIndex) => {
     const rowElement = document.createElement("div");
@@ -74,6 +75,13 @@ function checkButton(){ // On-screen keyboard
             displayMessage("invalid");
             return;
         }
+        if(previousWords.includes(guessedWord)){
+            const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+            shakeAudio.play();
+            shakeTiles();
+            displayMessage("already-used");
+            return;
+        }
         checkRow();
         disableElement(message);
         currentTile = 0;
@@ -110,6 +118,13 @@ function checkKey(event){ // Keyboard
             shakeAudio.play();
             shakeTiles();
             displayMessage("invalid");
+            return;
+        }
+        if(previousWords.includes(guessedWord)){
+            const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+            shakeAudio.play();
+            shakeTiles();
+            displayMessage("already-used");
             return;
         }
         checkRow();
@@ -199,6 +214,7 @@ function checkRow(){
     }
     else if(guessedWord !== correctWord){
         checkLetters(guessedWord);
+        previousWords.push(guessedWord);
     }
     
     if(currentRow < maxGuesses && isGameOver === false){
@@ -340,6 +356,17 @@ function displayMessage(state){
     if(state === "empty"){
         const message = document.querySelector(".message");
         message.textContent = `You must enter a word!`;
+        message.style.color = "rgb(255, 89, 94)";
+        message.style.animation = `messageDisplay 3s forwards`;
+        message.addEventListener("animationend", () =>{
+            message.style.animation = "";
+        })
+        return;
+    }
+
+    if(state === "already-used"){
+        const message = document.querySelector(".message");
+        message.textContent = `You already tried this word!`;
         message.style.color = "rgb(255, 89, 94)";
         message.style.animation = `messageDisplay 3s forwards`;
         message.addEventListener("animationend", () =>{
