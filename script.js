@@ -35,53 +35,65 @@ guessRows.forEach((guessRow, guessRowIndex) => {
 
 // Event Listeners
 
-keyboard.forEach((button) => {
-    button.addEventListener("click", () => {
-        if(isGameOver === true){return;}
-        if(button.innerText.length === 1){
-            const audio = new Audio("./audio/PopSound.mp3");
-            audio.play();
-            let letter = button.textContent.toUpperCase();
-            if(currentTile < correctWord.length){
-                addLetter(letter);
-                return;
-            }
-        }
-        if(button.textContent === "del"){
-            deleteLetter();
+keyboard.forEach((button) => {button.addEventListener("click", checkButton);})
+    
+window.addEventListener("keydown", checkKey);
+
+resetButton.addEventListener("click", () => {
+    const audio = new Audio("./audio/PopSound.mp3");
+    audio.play();
+    reset();
+})
+
+
+
+// Functions
+
+function checkButton(){ // On-screen keyboard
+    if(isGameOver === true){return;}
+    if(this.innerText.length === 1){
+        const audio = new Audio("./audio/PopSound.mp3");
+        audio.play();
+        let letter = this.textContent.toUpperCase();
+        if(currentTile < correctWord.length){
+            addLetter(letter);
             return;
         }
-        if(button.textContent === "enter" && currentTile === correctWord.length){
-            let guessedWord = guessRows[currentRow].join("").toLowerCase();
-            if(!WORDS.includes(guessedWord)){
-                const shakeAudio = new Audio("./audio/invalidAudio.mp3");
-                shakeAudio.play();
-                shakeTiles();
-                displayMessage("invalid");
-                return;
-            }
-            checkRow()
-            currentTile = 0;
-            currentGuess += 1;
-            return;
-        }
-        if(button.textContent === "enter" && currentTile === 0){
-            const emptyAudio = new Audio("./audio/emptyAudio.mp3");
-            emptyAudio.play();
-            displayMessage("empty");
-            return;
-        }
-        if(button.textContent === "enter" && currentTile < correctWord.length){
+    }
+    if(this.textContent === "del"){
+        deleteLetter();
+        return;
+    }
+    if(this.textContent === "enter" && currentTile === correctWord.length){
+        let guessedWord = guessRows[currentRow].join("").toLowerCase();
+        if(!WORDS.includes(guessedWord)){
             const shakeAudio = new Audio("./audio/invalidAudio.mp3");
             shakeAudio.play();
             shakeTiles();
-            displayMessage("short");
+            displayMessage("invalid");
             return;
         }
-    })
-})
+        checkRow()
+        currentTile = 0;
+        currentGuess += 1;
+        return;
+    }
+    if(this.textContent === "enter" && currentTile === 0){
+        const emptyAudio = new Audio("./audio/emptyAudio.mp3");
+        emptyAudio.play();
+        displayMessage("empty");
+        return;
+    }
+    if(this.textContent === "enter" && currentTile < correctWord.length){
+        const shakeAudio = new Audio("./audio/invalidAudio.mp3");
+        shakeAudio.play();
+        shakeTiles();
+        displayMessage("short");
+        return;
+    }
+}
 
-window.addEventListener("keydown", function checkKey (event){
+function checkKey(event){ // Keyboard
     if(event.key === "Backspace"){
         deleteLetter();
         return;
@@ -125,17 +137,7 @@ window.addEventListener("keydown", function checkKey (event){
             addLetter(pressedKey);
         }
     }
-})
-
-resetButton.addEventListener("click", () => {
-    const audio = new Audio("./audio/PopSound.mp3");
-    audio.play();
-    reset();
-})
-
-
-
-// Functions
+}
 
 function addLetter(key){
     if(currentTile < 5 && currentRow < maxGuesses){
