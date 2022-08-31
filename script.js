@@ -169,13 +169,13 @@ function deleteLetter(){
 }
 
 function checkRow(){
-   if(currentTile === correctWord.length){
     let guessedWord = guessRows[currentRow].join("").toLowerCase();
     const rowTiles = document.querySelector(`#guessRow-${currentRow}`).childNodes;
     console.log(guessedWord);
     if(guessedWord === correctWord){
         const winAudio = new Audio("./audio/winAudio.mp3");
         winAudio.play();
+        isGameOver = true;
         let delay = 0;
         for(let i = 0; i < rowTiles.length; i++){
             rowTiles[i].style.animation = "win 1.3s forwards";
@@ -183,7 +183,6 @@ function checkRow(){
             rowTiles[i].style.transitionDelay = `${delay}s`;
             rowTiles[i].classList.add("green");
             delay += 0.1;
-            isGameOver = true;
         }
         setTimeout(() => {
             const title = document.querySelector(".title");
@@ -206,7 +205,6 @@ function checkRow(){
         currentRow++;
         currentTile = 0;
     }else return;
-   }
 }
 
 function checkLetters(word){
