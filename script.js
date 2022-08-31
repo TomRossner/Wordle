@@ -94,7 +94,6 @@ function checkButton(){ // On-screen keyboard
         displayMessage("short");
         return;
     }
-    window.focus();
 }
 
 function checkKey(event){ // Keyboard
@@ -142,7 +141,6 @@ function checkKey(event){ // Keyboard
             addLetter(pressedKey);
         }
     }
-    window.focus();
 }
 
 function addLetter(key){
