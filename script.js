@@ -4,8 +4,9 @@ const keyboard = document.querySelectorAll(".kb-button");
 const message = document.querySelector(".message");
 let currentRow = 0;
 let currentGuess = 0;
+let currentTile = 0;
 let correctWord = WORDS[Math.floor(Math.random() * WORDS.length)];
-console.log(correctWord);
+let previousWords = [];
 let isGameOver = false;
 const maxGuesses = 6;
 const guessRows = [
@@ -16,11 +17,10 @@ const guessRows = [
     ["", "", "", "", ""],
     ["", "", "", "", ""]
 ];
-let currentTile = 0;
-displayMessage("start");
 const resetButton = document.querySelector(".reset");
+displayMessage("start");
 disableElement(resetButton);
-let previousWords = [];
+console.log(correctWord);
 
 guessRows.forEach((guessRow, guessRowIndex) => {
     const rowElement = document.createElement("div");
