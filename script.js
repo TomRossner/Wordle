@@ -434,16 +434,3 @@ function enableElement(element){
     element.style.opacity = 1;
     element.style.transition = "opacity 0.3s";
 }
-
-// correctWord = "mummy";
-// var tempArray= [];
-
-// for (let i = 0; i < correctWord.length; i++) {
-//     if (tempArray[correctWord[i]]) {
-//         tempArray[correctWord[i]].push(correctWord[i]);
-//     } else {
-//         tempArray[correctWord[i]] = [];
-//         tempArray[correctWord[i]].push(correctWord[i]);
-//     }
-// }
-// console.log(tempArray[correctWord.length]);
