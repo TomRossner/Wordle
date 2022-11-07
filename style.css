@@ -286,6 +286,24 @@ footer p{
     text-align: center;
     margin: 1rem auto;
     color: rgb(240, 240, 240);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s;
+}
+
+footer a:hover{
+    color: white;
+}
+
+footer #githubIcon.bi.bi-github{
+    font-size: 1.5rem;
 }
 
 @keyframes win {
