@@ -35,22 +35,22 @@ guessRows.forEach((guessRow, guessRowIndex) => {
 
 // Functions
 
-const checkButton = () => { // On-screen keyboard
-    if(isGameOver === true){return;}
-    if(this.innerText.length === 1){
+const checkButton = (e) => { // On-screen keyboard
+    if(isGameOver === true) return;
+    if(e.target.innerText.length === 1){
         const audio = new Audio("./audio/PopSound.mp3");
         audio.play();
-        let letter = this.textContent.toUpperCase();
+        let letter = e.target.textContent.toUpperCase();
         if(currentTile < correctWord.length){
             addLetter(letter);
             return;
         }
     }
-    if(this.textContent === "del"){
+    if(e.target.textContent === "del"){
         deleteLetter();
         return;
     }
-    if(this.textContent === "enter" && currentTile === correctWord.length){
+    if(e.target.textContent === "enter" && currentTile === correctWord.length){
         let guessedWord = guessRows[currentRow].join("").toLowerCase();
         if(!WORDS.includes(guessedWord)){
             const shakeAudio = new Audio("./audio/invalidAudio.mp3");
@@ -72,13 +72,13 @@ const checkButton = () => { // On-screen keyboard
         currentGuess += 1;
         return;
     }
-    if(this.textContent === "enter" && currentTile === 0){
+    if(e.target.textContent.toLowerCase() === "enter" && currentTile === 0){
         const emptyAudio = new Audio("./audio/emptyAudio.mp3");
         emptyAudio.play();
         displayMessage("empty");
         return;
     }
-    if(this.textContent === "enter" && currentTile < correctWord.length){
+    if(e.target.textContent.toLowerCase() === "enter" && currentTile < correctWord.length){
         const shakeAudio = new Audio("./audio/invalidAudio.mp3");
         shakeAudio.play();
         shakeTiles();
@@ -415,7 +415,7 @@ const enableElement = (element) => {
 
 // Event Listeners
 
-keyboard.forEach((button) => {button.addEventListener("click", checkButton);})
+keyboard.forEach((button) => {button.addEventListener("click", (e) => checkButton(e));})
 window.addEventListener("keydown", checkKey);
 resetButton.addEventListener("click", () => {
     const audio = new Audio("./audio/PopSound.mp3");
