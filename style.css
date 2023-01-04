@@ -278,13 +278,33 @@ body{
     box-shadow: 0 0 15px 2px rgb(0, 0, 0, 0.5);
 }
 
+.space{
+    flex: 1;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+footer .icons-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer span{
+    color: rgb(240, 240, 240);
+}
+
 footer p{
     font-family: "Ubuntu", sans-serif;
     font-style: italic;
     font-size: 1.1rem;
     font-weight: 400;
     text-align: center;
-    margin: 1rem auto;
     color: rgb(240, 240, 240);
     display: flex;
     gap: 1rem;
@@ -302,7 +322,8 @@ footer a:hover{
     color: white;
 }
 
-footer #githubIcon.bi.bi-github{
+footer #githubIcon.bi.bi-github,
+footer #linkedinIcon.bi.bi-linkedin{
     font-size: 1.5rem;
 }
 
