@@ -6,7 +6,7 @@ This project was built with:
 - HTML
 - CSS
 
-#### Link: tomrossner.github.io/Wordle/
+#### Link: [tomrossner.github.io/Wordle/](https://tomrossner.github.io/Wordle/)
 
 Images:
 
